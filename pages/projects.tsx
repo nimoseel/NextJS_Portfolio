@@ -2,16 +2,14 @@ import Layout from "@/components/layout"
 import Head from "next/head"
 import { TOKEN, DATABASE_ID } from "@/config";
 import ProjectItem from "@/components/projects/project-item";
+import { ResultType } from "@/Type";
 
 interface ProjectType {
-    projects : {
-        results : [
-            {
-                id: string,
-            }
-        ];
-    }
+    projects: {
+        results: ResultType[];
+    };
 }
+
 
 export default function Projects({projects}:ProjectType){
     console.log(projects)
@@ -29,8 +27,7 @@ export default function Projects({projects}:ProjectType){
                 </h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 py-10 m-6 gap-8">
-                    {projects.results.map((aProject)=>(
-                        // <h1>{aProject.properties.Name.title[0].plain_text}</h1>
+                    {projects.results.map((aProject: ResultType)=>(
                         <ProjectItem key={aProject.id} data={aProject}/>
                     ))}
                 </div>

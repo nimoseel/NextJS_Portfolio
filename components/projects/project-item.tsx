@@ -1,52 +1,30 @@
 import Image from "next/legacy/image"
+import { File, RichText, Title, ResultType, MultiSelectOption } from "@/Type";
 
-interface DataType {
-    data : {
-        id: string,
+interface DataType{
+    data: {
+        id: string;
         cover: {
-            file: {
-                url: string,
-            }
-        },
+            file: File;
+        };
         properties: {
             WorkPeriod: {
-                rich_text: [
-                    {
-                        plain_text: string,
-                    }
-                ]
-            },
+                rich_text: RichText[];
+            };
             Tags: {
-                multi_select: object[],
-            },
+                multi_select: MultiSelectOption[];
+            };
             Github: {
-                rich_text: [
-                    {
-                        plain_text: string,
-                    }
-                ]
-            },
-            Description:{
-                rich_text: [
-                    {
-                        plain_text: string,
-                    }
-                ]
-            }
+                rich_text: RichText[];
+            };
+            Description: {
+                rich_text: RichText[];
+            };
             Name: {
-                title: [{
-                    plain_text: string,
-                }];
+                title: Title[];
             };
         };
-    }
-}
-
-interface TagType{
-    aTag : {
-        id: string,
-        name: string,
-    }
+    };
 }
 
 export default function ProjectItem({data}: DataType){
@@ -64,9 +42,9 @@ export default function ProjectItem({data}: DataType){
                 className="rounded-t-xl"
                 src={imgSrc}
                 alt="cover image"
-                width="100%"
-                height="60%"
-                layout={"responsive"}
+                width={100}
+                height={60}
+                layout="responsive"
                 objectFit="cover"
                 quality={100}
             />
@@ -77,8 +55,12 @@ export default function ProjectItem({data}: DataType){
                 <p className="my-1">작업 기간 : {period}</p>
 
                 <div className="flex items-start mt-2">
-                    {Tags.map((aTag: TagType)=>(
-                        <h1 className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 w-30 text-xs" key={aTag.id}>{aTag.name}</h1>
+                    {Tags.map((aTag : MultiSelectOption) => (
+                        <h1 
+                            className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 w-30 text-xs"
+                            key={aTag.id}>
+                            {aTag.name}
+                        </h1>
                     ))}
                 </div>
             </div>
