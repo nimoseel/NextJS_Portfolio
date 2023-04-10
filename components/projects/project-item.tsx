@@ -53,13 +53,13 @@ export default function ProjectItem({data}: DataType){
                     quality={100}
                 />
                 <div className="p-4 flex flex-col">
-                    <h1 className="text-2xl font-bold mb-3">{title}</h1>
-                    <h3 className="mt-4 text-xl">{description}</h3>
+                    <h1 className="text-2xl font-bold">{title}</h1>
+                    <h3 className="text-lg mt-1">{description}</h3>
+                    <hr className="my-2"/>
                     <a href={github} className="mb-1">깃허브 바로가기</a>
                     <a href={link} target="_blank" className="mb-1">배포 링크 바로가기</a>
                     <p className="mb-2">작업 기간 : {period}</p>
-
-                    <div className="flex items-start mt-2">
+                    <div className="flex items-start">
                         {Tags.map((aTag : MultiSelectOption) => (
                             <h1 
                                 className="px-2 py-1 mr-2 rounded-md bg-sky-200 dark:bg-sky-700 w-30 text-xs"
