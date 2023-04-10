@@ -19,6 +19,9 @@ export interface ResultType {
         WorkPeriod: {
             rich_text: RichText[];
         };
+        Link:{
+            rich_text: RichText[];
+        };
         Tags: {
             multi_select: MultiSelectOption[];
         };
