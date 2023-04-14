@@ -21,10 +21,6 @@ export default function Projects({projects}:ProjectType){
                     <meta name="description" content="오늘도 코딩코딩"/>
                     <link rel="icon" href="/favicon.ico"/>
                 </Head>
-                <h1 className="text-4xl font-bold sm:text-6xl">프로젝트 :
-                    <span className="pl-4 text-blue-500">{projects.results.length}</span>
-                    개
-                </h1>
 
                 <div className="grid grid-cols-1 pt-0 md:grid-cols-2 py-10 m-6 gap-8">
                     {projects.results.map((aProject: ResultType)=>(
