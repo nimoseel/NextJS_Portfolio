@@ -11,7 +11,7 @@ export default function Home(){
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       <section className="flex h-[calc(100vh-156px)] flex-col items-conter justify-center text-gray-600 body-font">
-        <div className="container mx-auto flex px-5 md:flex-row flex-col items-center py-20">
+        <div className="container mx-auto flex px-5 md:flex-row flex-col items-center py-20 my-20">
           <Hero/>
         </div>
       </section>
