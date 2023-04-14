@@ -22,7 +22,7 @@ export default function Projects({projects}:ProjectType){
                     <link rel="icon" href="/favicon.ico"/>
                 </Head>
 
-                <div className="grid grid-cols-1 pt-0 md:grid-cols-2 py-10 m-6 gap-8">
+                <div className="grid grid-cols-1 pt-0 md:grid-cols-2 m-6 gap-8">
                     {projects.results.map((aProject: ResultType)=>(
                         <ProjectItem key={aProject.id} data={aProject}/>
                     ))}
