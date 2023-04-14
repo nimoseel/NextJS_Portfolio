@@ -16,16 +16,15 @@ export default function Header(){
                     </Link>
                     <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
                         <Link href="/" legacyBehavior>
-                            <a className="mr-5 hover:text-gray-900">홈</a>
+                            <a className="mr-5 hover:text-gray-900">home</a>
                         </Link>
                         <Link href="/projects" legacyBehavior>
-                            <a className="mr-5 hover:text-gray-900">프로젝트</a>
+                            <a className="mr-5 hover:text-gray-900">projects</a>
                         </Link>
-                        <Link href="https://open.kakao.com/o/sbtLJAcf" legacyBehavior>
-                            <a className="mr-5 hover:text-gray-900">contact</a>
-                        </Link>
+                        <a href="" className="mr-5 hover:text-gray-900" target="_blank">résumé</a>
+                        <a href="https://open.kakao.com/o/sbtLJAcf" className="mr-5 hover:text-gray-900" target="_blank">contact</a>
+                        <DarkModeToggleBtn/>
                     </nav>
-                    <DarkModeToggleBtn/>
                 </div>
             </header>
         </>
