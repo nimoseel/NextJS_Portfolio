@@ -26,7 +26,7 @@ export default function Projects({projects}:ProjectType){
                     개
                 </h1>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 py-10 m-6 gap-8">
+                <div className="grid grid-cols-1 pt-0 md:grid-cols-2 py-10 m-6 gap-8">
                     {projects.results.map((aProject: ResultType)=>(
                         <ProjectItem key={aProject.id} data={aProject}/>
                     ))}
