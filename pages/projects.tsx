@@ -12,7 +12,6 @@ interface ProjectType {
 
 
 export default function Projects({projects}:ProjectType){
-    console.log(projects)
     return (
         <Layout>
             <div className="flex flex-col items-center justify-center min-h-screen mb-10 px-6">
