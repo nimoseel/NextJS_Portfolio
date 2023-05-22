@@ -21,12 +21,9 @@ export default function Header(){
                         <Link href="/projects" legacyBehavior>
                             <a className="mr-5 hover:text-gray-900">projects</a>
                         </Link>
-<<<<<<< HEAD
-=======
                         <Link href="/todo" legacyBehavior>
                             <a className="mr-5 hover:text-gray-900">todo</a>
                         </Link>
->>>>>>> main
                         <a href="https://open.kakao.com/o/sbtLJAcf" className="mr-5 hover:text-gray-900" target="_blank">contact</a>
                         <DarkModeToggleBtn/>
                     </nav>
