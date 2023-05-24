@@ -13,7 +13,7 @@ export default function Hero(){
                 </p>
                 <div className="flex justify-center">
                     <Link href="/projects" legacyBehavior>
-                        <a className="btn-project">
+                        <a className="btn-styled text-lg">
                             프로젝트 보러가기
                         </a>
                     </Link>
