@@ -1,5 +1,7 @@
+import { ChangeEvent } from 'react'
+
 type TodoItemProps = {
-    id: number;
+    id: string;
     content: string;
 };
 
