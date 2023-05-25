@@ -1,5 +1,4 @@
 import Layout from "@/components/layout"
-import Head from "next/head"
 import { TOKEN, DATABASE_ID } from "@/config";
 import ProjectItem from "@/components/projects/project-item";
 import { ResultType } from "@/Type";
@@ -15,12 +14,6 @@ export default function Projects({projects}:ProjectType){
     return (
         <Layout>
             <div className="flex flex-col items-center justify-center min-h-screen mb-10 px-6">
-                <Head>
-                    <title>소민 포트폴리오</title>
-                    <meta name="description" content="오늘도 코딩코딩"/>
-                    <link rel="icon" href="/favicon.ico"/>
-                </Head>
-
                 <div className="grid grid-cols-1 pt-0 md:grid-cols-2 m-6 gap-8">
                     {projects.results.map((aProject: ResultType)=>(
                         <ProjectItem key={aProject.id} data={aProject}/>
