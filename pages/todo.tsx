@@ -46,6 +46,10 @@ export default function Todo(){
         }
     }
 
+    const onReset = () => {
+        setTodoList([]);
+    }
+
     return (
         <>
             <Layout>
@@ -63,6 +67,9 @@ export default function Todo(){
                                 <TodoItem key={v.id} id={v.id} content={v.content} />
                             ))}
                         </ul>
+                        { (todoList.length > 1) && 
+                            <button className='btn-styled text-sm' onClick={onReset}>reset</button>
+                        }
                     </div>
                 </div>
             </Layout>
