@@ -1,10 +1,30 @@
-import Layout from "@/components/layout"
-import TodoItem from "@/components/todo/todo-item"
-import { useState, ChangeEvent } from "react"
+import Layout from '@/components/layout';
+import TodoItem from '@/components/todo/todo-item';
+
+import { useState, ChangeEvent, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { todoState } from '../recoil/TodoAtom';
+
+// 새로고침할 때 런타임 에러 발생 
+interface Todo {
+    id: string;
+    content: string;
+}
 
 export default function Todo(){
     const [ todoTxt, setTodoTxt ] = useState('');
-    const [ todoList, setTodoList ] = useState([]);
+    const [ todoList, setTodoList ] = useRecoilState(todoState);
+
+    useEffect(()=>{
+        setTodoList((prev:Todo[]) => {
+            // Recoil 상태를 클라이언트 측에서만 설정
+            return prev.length === 0 ? [] : prev;
+        });
+        // return () => {
+
+        // }
+    },[])
+
 
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setTodoTxt(e.target.value);
@@ -13,32 +33,40 @@ export default function Todo(){
     const onSave = () => {
         const trimTodoTxt = todoTxt.trim();
 
+        const todoObj = {
+            id : 'todo' + todoList.length,
+            content: todoTxt,
+        }
+
         if(trimTodoTxt){
-            setTodoList(prev => [...prev, todoTxt]);
+            setTodoList((prev:Todo[]) => [...prev, todoObj]);
             setTodoTxt('');
         }else{
-            alert('내용을 입력해주세요')
+            alert('내용을 입력해주세요');
         }
     }
 
     return (
-        <Layout>
-            <div className="flex min-h-screen mb-10 px-6 gap-x-8">
-                <div className="flex-1 ">
-                    <h2 className="text-xl font-medium mb-3">할 일을 적어보자</h2>
-                    <textarea className="bg-transparent w-full border-double border-4 border-indigo-600 rounded-md h-96 mb-3 p-4" name="todoTextArea" value={todoTxt} onChange={onChange} />
-                    <button className="btn-styled text-sm" onClick={onSave}>save</button>
-                </div>
+        <>
+            <Layout>
+                <div className='flex min-h-screen mb-10 px-6 gap-x-8'>
+                    <div className='flex-1 '>
+                        <h2 className='text-xl font-medium mb-3'>할 일을 적어보자</h2>
+                        <textarea className='bg-transparent w-full border-double border-4 border-indigo-600 rounded-md h-96 mb-3 p-4' name='todoTextArea' value={todoTxt} onChange={onChange} />
+                        <button className='btn-styled text-sm' onClick={onSave}>save</button>
+                    </div>
 
-                <div className="flex-1">
-                    <h2 className="text-xl font-medium mb-3">할 일이.... {todoList.length}개다....</h2>
-                    <ul>
-                        {todoList.map((v: string, index: number) => (
-                        <TodoItem key={index} id={index} content={v} />
-                        ))}
-                    </ul>
+                    <div className='flex-1'>
+                        <h2 className='text-xl font-medium mb-3'>할 일이.... {todoList.length}개다....</h2>
+                        <ul>
+                            {todoList.map((v:Todo)=> (
+                                <TodoItem key={v.id} id={v.id} content={v.content} />
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </Layout>
+            </Layout>
+        </>
+        
     )
 }
