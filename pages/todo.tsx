@@ -13,13 +13,19 @@ interface Todo {
 export default function Todo(){
     const [ todoTxt, setTodoTxt ] = useState('');
     const [ todoList, setTodoList ] = useRecoilState(todoState);
+    const [ loading, setLoading ] = useState(true);
 
-    useEffect(()=>{
-        setTodoList((prev:Todo[]) => {
-            return prev.length === 0 ? [] : prev;
-        });
-    },[])
-
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+    
+        fetchData();
+    }, []);
 
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setTodoTxt(e.target.value);
@@ -56,14 +62,22 @@ export default function Todo(){
                     </div>
 
                     <div className='flex-1'>
-                        <h2 className='text-xl font-medium mb-3'>할 일이.... {todoList.length}개다....</h2>
-                        <ul>
-                            {todoList.map((v:Todo)=> (
-                                <TodoItem key={v.id} id={v.id} content={v.content} />
-                            ))}
-                        </ul>
-                        { (todoList.length > 1) && 
-                            <button className='btn-styled text-sm' onClick={onReset}>reset</button>
+                        {
+                            loading ? (
+                                <p>loading...</p>
+                            ) : (
+                                <>
+                                    <h2 className='text-xl font-medium mb-3'>할 일이.... {todoList.length}개다....</h2>
+                                    <ul>
+                                        {todoList.map((v:Todo)=> (
+                                            <TodoItem key={v.id} id={v.id} content={v.content} />
+                                            ))}
+                                    </ul>
+                                    { (todoList.length > 1) && 
+                                        <button className='btn-styled text-sm' onClick={onReset}>reset</button>
+                                    }
+                                </>
+                            )
                         }
                     </div>
                 </div>
