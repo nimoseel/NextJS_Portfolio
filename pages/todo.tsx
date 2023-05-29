@@ -5,7 +5,6 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { todoState } from '../recoil/TodoAtom';
 
-// 새로고침할 때 런타임 에러 발생 
 interface Todo {
     id: string;
     content: string;
@@ -17,12 +16,8 @@ export default function Todo(){
 
     useEffect(()=>{
         setTodoList((prev:Todo[]) => {
-            // Recoil 상태를 클라이언트 측에서만 설정
             return prev.length === 0 ? [] : prev;
         });
-        // return () => {
-
-        // }
     },[])
 
 
