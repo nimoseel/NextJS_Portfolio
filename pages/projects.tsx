@@ -43,6 +43,7 @@ export async function getStaticProps() {
     const projects = await response.json();
 
     return {
-      props: {projects}, // will be passed to the page component as props
+        props: {projects}, // will be passed to the page component as props
+        revalidate: 1 
     }
 }
