@@ -9,7 +9,6 @@ interface ProjectType {
     };
 }
 
-
 export default function Projects({projects}:ProjectType){
     return (
         <Layout>
@@ -24,7 +23,6 @@ export default function Projects({projects}:ProjectType){
     )
 }
 
-// 빌드될 때 호출
 export async function getStaticProps() {
     const options = {
         method: 'POST',
@@ -35,7 +33,6 @@ export async function getStaticProps() {
             'Authorization': `Bearer ${TOKEN}`,
         },
         body: JSON.stringify({page_size: 100})
-        // 100페이지 까지 가져오라는 뜻
     };
 
     const response = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, options)
@@ -43,7 +40,7 @@ export async function getStaticProps() {
     const projects = await response.json();
 
     return {
-        props: {projects}, // will be passed to the page component as props
+        props: {projects},
         revalidate: 1 
     }
 }
