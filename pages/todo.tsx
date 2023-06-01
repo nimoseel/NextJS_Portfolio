@@ -54,14 +54,14 @@ export default function Todo(){
     return (
         <>
             <Layout>
-                <div className='flex min-h-screen mb-10 px-6 gap-x-8'>
-                    <div className='flex-1 '>
+                <div className='container mx-auto flex flex-col min-h-screen mb-10 gap-x-8 items-start md:flex-row px-6 '>
+                    <div className='flex-auto md:flex-1'>
                         <h2 className='text-xl font-medium mb-3'>할 일을 적어보자</h2>
                         <textarea className='bg-transparent w-full border-double border-4 border-indigo-600 rounded-md h-96 mb-3 p-4' name='todoTextArea' value={todoTxt} onChange={onChange} />
                         <button className='btn-styled text-sm' onClick={onSave}>save</button>
                     </div>
 
-                    <div className='flex-1'>
+                    <div className='flex-auto md:flex-1'>
                         {
                             loading ? (
                                 <p>loading...</p>
