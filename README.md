@@ -1,5 +1,6 @@
 Next.js, TypeScript, tailwindcss 를 사용하여 만든 포트폴리오 페이지
 <br/>
+https://next-js-portfolio-snowy.vercel.app/
 <br/>
 
 ## Todo 페이지 에러
@@ -43,3 +44,64 @@ getStaticProps는 빌드시에 실행되고 정적인 데이터를 미리 가져
 getServerSideProps는 요청마다 실행되고 동적인 데이터를 가져온다.
 때문에 실시간으로 데이터를 업데이트 해야할 경우에 적합하다.
 프로젝트 데이터의 경우 정적인 데이터로 빌드시에 한번 가져오면 되기 때문에 getServerSideProps의 성능상 비용이 불필요하다고 느꼈고, revalidate 속성을 사용하여 정적 파일의 재생성 주기를 설정했다.
+
+<br/>
+<br/>
+
+
+## tailwindcss 로 반응형 웹 구현하기
+### Targeting mobile screens
+모바일 화면을 스타일링할 때 `sm:`로 모바일 화면을 스타일링하는 것이 아니라 `sm:`없이 스타일링 해야한다. 
+`sm:`을 '작은 화면'에서 생각하지 않고 '작은 브레이크 포인트에서'라고 생각하자.
+
+- 모바일 기기를 대상으로 하려면 `sm:`을 사용하지 말자.
+```js
+<!-- 이 코드는 화면 폭이 640px 이상인 화면에서만 텍스트를 가운데 정렬하지만, 작은 화면에서는 가운데 정렬되지 않습니다. -->
+<div class="sm:text-center"></div>
+```
+- 모바일을 대상으로 하려면 접두사 없이 작성하고, 더 큰 브레이크 포인트에서 이를 덮어쓴다. 
+```js
+<!-- 이 코드는 모바일에서 텍스트를 가운데 정렬하고, 화면 폭이 640px 이상인 화면에서는 왼쪽 정렬합니다. -->
+<div class="text-center sm:text-left"></div>
+```
+
+### Targeting a breakpoint range
+기본적으로 `md:flex`와 같은 규칙에 의해 적용된 스타일은 해당 브레이크포인트에서만 적용되며, 더 큰 브레이크포인트에서도 적용됩니다.
+특정 브레이크포인트 범위에서만 유틸리티를 적용하려면 `md`와 `max-*` 수정자를 쌓아서 해당 스타일을 특정 범위로 제한하면 된다.
+
+```js
+<div class="md:max-xl:flex">
+  <!-- ... -->
+</div>
+```
+
+### Targeting a single breakpoint
+단일 브레이크포인트를 대상으로 하려면, 다음 브레이크포인트를 위한 `max-*` 수정자와 함께 `md`와 같은 반응형 수정자를 쌓으면 된다.
+
+```js
+<div class="md:max-lg:flex">
+  <!-- ... -->
+</div>
+```
+
+<br/>
+<br/>
+
+## @apply로 클래스 추출하기
+```js
+//global.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-styled {
+    @apply inline-flex text-white dark:text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded
+}
+```
+```js
+//todo-item.tsx
+<button className="btn-styled text-sm" id={id} onClick={onDelete}>delete</button>
+```
+
+<br/>
+참고자료 https://tailwindcss.com/docs/responsive-design
