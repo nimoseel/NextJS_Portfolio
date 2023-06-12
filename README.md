@@ -1,6 +1,11 @@
-Next.js, TypeScript, tailwindcss 를 사용하여 만든 포트폴리오 페이지
+
+Next.js, TypeScript, tailwindcss 를 사용하여 만든 포트폴리오 페이지입니다.
 <br/>
+<br/>
+
+## 배포 링크 
 https://next-js-portfolio-snowy.vercel.app/
+
 <br/>
 
 ## Todo 페이지 에러
@@ -104,4 +109,46 @@ getServerSideProps는 요청마다 실행되고 동적인 데이터를 가져온
 ```
 
 <br/>
-참고자료 https://tailwindcss.com/docs/responsive-design
+<br/>
+
+## 쿠키 유효기간 설정
+처음에 구현할 땐 Expires를 통해 유효기간을 설정했다. 
+유효기간 설정에 max-age 방법도 있기 때문에 어떤 방법이 좋을까 생각해봤고, max-age 방법으로 수정했다.
+
+expires는 <strong>'만료일'</strong>을 설정하는 방법으로, 특정한 날짜와 시간을 기준으로 캐시의 유효기간을 설정한다.
+expires를 사용할 경우, 만료일을 구체적으로 설정해야 하며, 만료일이 지나면 클라이언트와 서버 간의 통신이 발생하여 리소스를 다시 가져온다.
+하루라는 유효기간을 설정해기 위해 현재시간을 구하고, 현재시간에서 하루 뒤의 시간을 구하고 정확한 GMT 포맷으로 만들기 위해 
+`date.date.toUTCString`을 사용하여 expires 값을 설정했다.
+
+```js
+setCookie: function (name, val, exp) {
+  const date = new Date();
+  date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${val};expires=${date.toUTCString()};path=/`;
+}
+```
+
+반면, max-age는 <strong>'캐시의 유효기간'</strong>을 상대적인 시간으로 설정하는 방법이다. max-age는 초 단위로 지정되며, 클라이언트로부터 얼마 동안 캐시가 유효한지를 나타낸다. 
+예를 들어, max-age=3600은 리소스가 1시간 동안 유효하다는 것을 의미한다. 이 방법은 날짜와 시간을 다루지 않기 때문에 사용하기 간편하다.
+
+```js
+setCookie: function (name, val, exp) {
+  const maxAge = exp * 24 * 60 * 60 ;
+  document.cookie = `${name}=${val};max-age=${maxAge};path=/`;
+}
+
+// maxAge 변수를 생성하지 않고 86400 값을 설정하면 코드가 간결해지지만
+// 일주일 동안 보지 않기 등 유효기간 변경을 고려하여 다음과 같이 exp값을 활용하여 maxAge 변수를 생성했다.
+```
+
+일반적으로, max-age를 사용하여 캐시의 유효기간을 설정하는 것이 권장된다고 한다.
+(만일 max-age와 동시에 사용되면 Expires는 무시된다.)
+max-age가 날짜와 시간을 다루지 않고, 상대적인 시간을 사용하기 때문에 더 유연하고 관리하기 쉽기 때문이다. 
+또한, max-age를 사용하면 만료일을 설정하는 대신 특정 기간 동안 캐시를 사용할 수 있기 때문에 더 효율적인 캐시 관리를 할 수 있다.
+
+<br/>
+<br/>
+
+### 참고자료 
+https://tailwindcss.com/docs/responsive-design <br/>
+https://ko.javascript.info/cookie#ref-751
