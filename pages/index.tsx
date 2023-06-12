@@ -7,11 +7,11 @@ export default function Home(){
     const [showPopup, setShowPopup] = useState(true);
     
     const handleCookie = {
-      setCookie: function (name, val, exp) {
+      setCookie: function (name: string, val: string, exp: number) {
         const maxAge = exp * 24 * 60 * 60 ;
         document.cookie = `${name}=${val};max-age=${maxAge};path=/`;
       },
-      getCookie: function (name) {
+      getCookie: function (name: string) {
         const value = document.cookie.match(`(^|;) ?${name}=([^;]*)(;|$)`);
         return value ? value[2] : null;
       }
