@@ -8,9 +8,8 @@ export default function Home(){
     
     const handleCookie = {
       setCookie: function (name, val, exp) {
-        const date = new Date();
-        date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
-        document.cookie = `${name}=${val};expires=${date.toUTCString()};path=/`;
+        const maxAge = exp * 24 * 60 * 60 ;
+        document.cookie = `${name}=${val};max-age=${maxAge};path=/`;
       },
       getCookie: function (name) {
         const value = document.cookie.match(`(^|;) ?${name}=([^;]*)(;|$)`);
@@ -20,7 +19,7 @@ export default function Home(){
   
     useEffect(() => {
       console.log(handleCookie.getCookie("today"));
-  
+      
       if (handleCookie.getCookie("today") === "y") {
         setShowPopup(false);
       }
