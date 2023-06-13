@@ -1,7 +1,7 @@
-import Layout from "@/components/layout"
-import { TOKEN, DATABASE_ID } from "@/config";
-import ProjectItem from "@/components/projects/project-item";
-import { ResultType } from "@/Type";
+import Layout from '@/components/layout';
+import { TOKEN, DATABASE_ID } from '@/config';
+import ProjectItem from '@/components/projects/project-item';
+import { ResultType } from '@/Type';
 
 interface ProjectType {
     projects: {
@@ -12,8 +12,8 @@ interface ProjectType {
 export default function Projects({projects}:ProjectType){
     return (
         <Layout>
-            <div className="flex flex-col items-center justify-center min-h-screen mb-10 px-6">
-                <div className="grid grid-cols-1 pt-0 md:grid-cols-2 m-6 gap-8">
+            <div className='flex flex-col items-center justify-center min-h-screen mb-10 px-6'>
+                <div className='grid grid-cols-1 pt-0 md:grid-cols-2 m-6 gap-8'>
                     {projects.results.map((aProject: ResultType)=>(
                         <ProjectItem key={aProject.id} data={aProject}/>
                     ))}

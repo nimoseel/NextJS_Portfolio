@@ -16,9 +16,9 @@ export default function TodoItem({id, content}: TodoItemProps){
     }
 
     return(
-        <li className="list-none border-solid border-2 border-indigo-600 rounded-md mb-3 p-4 flex justify-between items-center" key={id} id={id} draggable="true">
-            <p className="pl-1" id={id}>{content}</p>
-            <button className="btn-styled text-sm" id={id} onClick={onDelete}>delete</button>
+        <li className='list-none border-solid border-2 border-indigo-600 rounded-md mb-3 p-4 flex justify-between items-center' key={id} id={id} draggable='true'>
+            <p className='pl-1' id={id}>{content}</p>
+            <button className='btn-styled text-sm' id={id} onClick={onDelete}>delete</button>
         </li>
     )
 }
