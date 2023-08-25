@@ -1,15 +1,15 @@
 
-Next.js, TypeScript, tailwindcss 를 사용하여 만든 포트폴리오 입니다.
-접속시 index 화면은 home 화면이며, 팝업창이 열리고 하루동안 열지 않음을 체크할 수 있습니다. 
-projects 페이지의 경우 노션 페이지 https://www.notion.so/a2e02bf4047b44f7b8862348d90b38bf 에서 정보를 가져와 
-페이지를 그립니다. 
-todo 페이지의 경우 할 일을 적고, 저장하고, 삭제할 수 있는 페이지며 리코일을 이용하여 투두 아이템을 관리하고 있습니다.
-
-<br/>
-<br/>
-
 ## 배포 링크 
 https://next-js-portfolio-snowy.vercel.app/
+
+<br/>
+
+### 프로젝트 설명
+Next.js, TypeScript, tailwindcss 를 사용하여 만든 포트폴리오 입니다.<br/>
+접속시 index 화면은 home 화면이며, 팝업창이 열리고 하루동안 열지 않음을 체크할 수 있습니다.<br/>
+projects 페이지의 경우 https://www.notion.so/a2e02bf4047b44f7b8862348d90b38bf 에서 정보를 가져와 
+페이지를 그립니다. <br/>
+todo 페이지의 경우 할 일을 적고, 저장하고, 삭제할 수 있는 페이지며 리코일을 이용하여 투두 아이템을 관리하고 있습니다.
 
 <br/>
 
